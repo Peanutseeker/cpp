@@ -1,0 +1,51 @@
+#include <iostream>
+using namespace std;
+#include <queue>
+#include <vector>
+
+void SlidingWindow(vector<int>& mins,vector<int>& maxs,const vector<int>& arr,int k){
+    deque<int> min_queue;
+    deque<int> max_queue;
+    for(int i=0;i<arr.size();i++){
+        while(!min_queue.empty()&&arr[min_queue.back()]>arr[i]){
+            min_queue.pop_back();
+        }
+        while(!min_queue.empty()&&min_queue.front()<=i-k) min_queue.pop_front();
+        min_queue.push_back(i);
+
+        while(!max_queue.empty()&&arr[max_queue.back()]<arr[i]){
+            max_queue.pop_back();
+        }
+        while(!max_queue.empty()&&max_queue.front()<=i-k) max_queue.pop_front();
+        max_queue.push_back(i);
+
+        if(i>=k-1){
+            mins.push_back(arr[min_queue.front()]);
+            maxs.push_back(arr[max_queue.front()]);
+        }
+    }
+    
+    
+}
+
+int main(){
+    int n,k;
+    cin>>n>>k;
+    vector<int> arr(n);
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    vector<int> mins;
+    vector<int> maxs;
+    SlidingWindow(mins,maxs,arr,k);
+    // Output the mins and maxs
+    for (int i = 0; i < mins.size(); i++) {
+        cout << mins[i] << ' ';
+    }
+    cout << endl;
+
+
+    for (int i = 0; i < maxs.size(); i++) {
+        cout << maxs[i] << ' ';
+    }
+}

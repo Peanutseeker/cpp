@@ -1,0 +1,39 @@
+# VS Code
+.vscode/
+.vscode-server/
+
+# Build output (examples, adjust as needed)
+build/
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.a
+*.lib
+
+# 编译产物
+
+dist/
+
+*.out
+
+
+# 日志文件
+*.log
+logs/
+
+# 依赖包 (例如 Node.js, Python)
+node_modules/
+venv/
+__pycache__/
+
+# IDE 和编辑器配置 (选择性忽略)
+
+.idea/
+*.swp
+
+# 敏感信息
+.env
+*.pem
+
